@@ -1,0 +1,35 @@
+{
+  "fill" : {
+    "automatic-gradient" : "srgb:0.97288,0.67149,0.77746,1.00000"
+  },
+  "groups" : [
+    {
+      "layers" : [
+        {
+          "image-name" : "MeImage.png",
+          "name" : "MeImage",
+          "position" : {
+            "scale" : 0.84,
+            "translation-in-points" : [
+              62.47086181894383,
+              -55.978182745789354
+            ]
+          }
+        }
+      ],
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.6
+      },
+      "translucency" : {
+        "enabled" : false,
+        "value" : 0.2
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "squares" : [
+      "iOS"
+    ]
+  }
+}
