@@ -10,7 +10,7 @@
 		A10000000000000000000001 /* SwipeActions27App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000011 /* SwipeActions27App.swift */; };
 		BBED2D56303E1C0A00A76D17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBED2D55303E1C0A00A76D17 /* Assets.xcassets */; };
 		BBED2D58303E1C1900A76D17 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = BBED2D57303E1C1900A76D17 /* AppIcon.icon */; };
-		BBED2D5A303E1C2600A76D17 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBED2D59303E1C2600A76D17 /* Launch Screen.storyboard */; };
+		BBED2D5A303E1C2600A76D17 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBED2D59303E1C2600A76D17 /* Launch Screen.storyboard */; platformFilter = ios; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -156,11 +156,17 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
+				"EXCLUDED_SOURCE_FILE_NAMES[sdk=macosx*]" = (
+					Launch,
+					Screen.storyboard,
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=macosx*]" = NO;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
+				"INFOPLIST_KEY_UILaunchStoryboardName[sdk=macosx*]" = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
@@ -183,11 +189,17 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
+				"EXCLUDED_SOURCE_FILE_NAMES[sdk=macosx*]" = (
+					Launch,
+					Screen.storyboard,
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=macosx*]" = NO;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
+				"INFOPLIST_KEY_UILaunchStoryboardName[sdk=macosx*]" = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
