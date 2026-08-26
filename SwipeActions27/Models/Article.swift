@@ -13,7 +13,7 @@
 //----------------------------------------------
 // Copyright © 2026 CreaTECH Solutions. All rights reserved.
 
-struct Article: Identifiable {
+struct Article: Identifiable, Hashable {
     let id: Int
     let title: String
     let systemImage: String

@@ -53,8 +53,8 @@
 				BBED2D3A303E1B4C00A76D17 /* Models */,
 				BBED2D33303E1B4600A76D17 /* Views */,
 				A10000000000000000000011 /* SwipeActions27App.swift */,
-				BBED2D55303E1C0A00A76D17 /* Assets.xcassets */,
 				BBED2D57303E1C1900A76D17 /* AppIcon.icon */,
+				BBED2D55303E1C0A00A76D17 /* Assets.xcassets */,
 				BBED2D59303E1C2600A76D17 /* Launch Screen.storyboard */,
 			);
 			path = SwipeActions27;

@@ -22,8 +22,35 @@ struct ArticleListView: View {
         List {
             ForEach(articles) { article in
                 ArticleCard(article: article)
+                    .swipeActions(
+                        edge: .leading,
+                        allowsFullSwipe: false){
+                            Button(
+                                article.isFavorite ? "Unfavorite" : "Favorite",
+                                systemImage: article.isFavorite ? "star.slash" : "star") {
+                                    guard let index = articles.firstIndex(where: {$0.id == article.id}) else { return }
+                                    articles[index].isFavorite.toggle()
+                                }
+                                .tint(.yellow)
+                        }
+
+                    .swipeActions {
+                        Button(
+                            article.isArchived ? "Unarchive" : "Archive",
+                            systemImage: article.isArchived ? "tray.and.arrow.up" : "archivebox") {
+                                guard let index = articles.firstIndex(where: {$0.id == article.id}) else { return }
+                                articles[index].isArchived.toggle()
+                            }
+                            .tint(.indigo)
+                        Button(role: .destructive) {
+                            articles.removeAll(where: {$0.id == article.id })
+                        }
+                    }
             }
+            .listRowSeparator(.hidden)
+            .listRowBackground(Color.clear)
         }
+        .listStyle(.plain)
     }
 }
 

@@ -16,12 +16,65 @@
 import SwiftUI
 
 struct ArticleGridView: View {
+    @State private var articles = Article.samples
+    let columns = [GridItem(.adaptive(minimum: 145))]
+    @State private var isPresenting = false
     var body: some View {
-        ContentUnavailableView(
-            "Grid Coming Soon",
-            systemImage: "square.grid.2x2",
-            description: Text("Build this layout from the completed scroll view.")
-        )
+        ScrollView {
+            Text("Swipe a card to reveal its actions")
+                .font(.callout)
+                .foregroundStyle(.secondary)
+                .opacity(isPresenting ? 0 : 1)
+            LazyVGrid(columns: columns) {
+                ForEach(articles, id: \.self) { article in
+                    ArticleCard(article: article, isGrid: true)
+                        .padding(.vertical, 8)
+                        .swipeActions(
+                            edge: .leading,
+                            allowsFullSwipe: false){
+                                Button(
+                                    article.isFavorite ? "Unfavorite" : "Favorite",
+                                    systemImage: article.isFavorite ? "star.slash" : "star") {
+                                        guard let index = articles.firstIndex(where: {$0.id == article.id}) else { return }
+                                        withAnimation {
+                                            articles[index].isFavorite.toggle()
+                                            isPresenting = false
+                                        }
+                                    }
+                                    .tint(.yellow)
+                            } onPresentationChanged: { isPresenting in
+                                withAnimation {
+                                    self.isPresenting = isPresenting
+                                }
+                            }
+
+                        .swipeActions {
+                            Button(
+                                article.isArchived ? "Unarchive" : "Archive",
+                                systemImage: article.isArchived ? "tray.and.arrow.up" : "archivebox") {
+                                    guard let index = articles.firstIndex(where: {$0.id == article.id}) else { return }
+                                    withAnimation {
+                                        articles[index].isArchived.toggle()
+                                        isPresenting = false
+                                    }
+                                }
+                                .tint(.indigo)
+                            Button(role: .destructive) {
+                                withAnimation {
+                                    articles.removeAll(where: {$0.id == article.id })
+                                    isPresenting = false
+                                }
+                            }
+                        } onPresentationChanged: { isPresenting in
+                            withAnimation {
+                                self.isPresenting = isPresenting
+                            }
+                        }
+                }
+            }
+            .padding(.horizontal)
+        }
+        .swipeActionsContainer()
     }
 }
 

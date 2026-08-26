@@ -17,30 +17,57 @@ import SwiftUI
 
 struct ArticleCard: View {
     let article: Article
+    let isGrid: Bool
+    init(article: Article, isGrid: Bool = false) {
+        self.article = article
+        self.isGrid = isGrid
+    }
     var body: some View {
-        HStack {
-            // Article Info
-            HStack(spacing: 10) {
-                Image(systemName: article.systemImage)
-                    .font(.title2)
-                    .foregroundStyle(.cyan)
-                Text(article.title)
-                    .font(.headline)
-            }
-            // Status Icons
-            HStack(spacing: 10) {
-                if article.isArchived {
-                    Image(systemName: "archivebox.fill")
-                        .foregroundStyle(.indigo)
+        Group {
+            if isGrid {
+                VStack {
+                    // Article Info
+                    articleView
+                    // Status Icons
+                    statusIcons
                 }
-                
-                if article.isFavorite {
-                    Image(systemName: "star.fill")
-                        .foregroundStyle(.yellow)
+            } else {
+                HStack {
+                    // Article Info
+                    articleView
+                    // Status Icons
+                    statusIcons
                 }
             }
-            .frame(maxWidth: .infinity, alignment: .trailing)
         }
+        .padding(10)
+        .frame(height: 70)
+        .background(.background.secondary, in: .rect(cornerRadius: 12))
+    }
+    
+    var articleView: some View {
+        HStack(spacing: 10) {
+            Image(systemName: article.systemImage)
+                .font(.title2)
+                .foregroundStyle(.cyan)
+            Text(article.title)
+                .font(.headline)
+        }
+    }
+    
+    var statusIcons: some View {
+        HStack(spacing: 10) {
+            if article.isArchived {
+                Image(systemName: "archivebox.fill")
+                    .foregroundStyle(.indigo)
+            }
+            
+            if article.isFavorite {
+                Image(systemName: "star.fill")
+                    .foregroundStyle(.yellow)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .trailing)
     }
 }
 

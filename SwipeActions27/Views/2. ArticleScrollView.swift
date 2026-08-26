@@ -16,12 +16,49 @@
 import SwiftUI
 
 struct ArticleScrollView: View {
+    @State private var articles = Article.samples
+
     var body: some View {
-        ContentUnavailableView(
-            "Scroll View Coming Soon",
-            systemImage: "scroll",
-            description: Text("Recreate the List content with a custom scroll layout.")
-        )
+        ScrollView {
+            LazyVStack {
+                ForEach(articles, id: \.self) { article in
+                    ArticleCard(article: article)
+                        .padding(.vertical, 8)
+                        .swipeActions(
+                            edge: .leading,
+                            allowsFullSwipe: false){
+                                Button(
+                                    article.isFavorite ? "Unfavorite" : "Favorite",
+                                    systemImage: article.isFavorite ? "star.slash" : "star") {
+                                        guard let index = articles.firstIndex(where: {$0.id == article.id}) else { return }
+                                        withAnimation {
+                                            articles[index].isFavorite.toggle()
+                                        }
+                                    }
+                                    .tint(.yellow)
+                            }
+
+                        .swipeActions {
+                            Button(
+                                article.isArchived ? "Unarchive" : "Archive",
+                                systemImage: article.isArchived ? "tray.and.arrow.up" : "archivebox") {
+                                    guard let index = articles.firstIndex(where: {$0.id == article.id}) else { return }
+                                    withAnimation {
+                                        articles[index].isArchived.toggle()
+                                    }
+                                }
+                                .tint(.indigo)
+                            Button(role: .destructive) {
+                                withAnimation {
+                                    articles.removeAll(where: {$0.id == article.id })
+                                }
+                            }
+                        }
+                }
+            }
+            .padding(.horizontal)
+        }
+        .swipeActionsContainer()
     }
 }
 
